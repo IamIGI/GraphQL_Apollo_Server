@@ -37,5 +37,11 @@ review(id: $id) {
 }
 }
 
+query GameQuery($id: ID!) {
+game(id: $id) {
+  platform
+}
+}
+
 
 */
