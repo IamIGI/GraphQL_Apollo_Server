@@ -16,3 +16,26 @@ async function startServer() {
 }
 
 startServer();
+
+//--------Example client queries:
+/*
+
+query GamesQuery {
+  games {
+    title,
+    platform
+  }
+  authors {
+    name, verified
+  }
+}
+
+-------
+query ReviewsQuery($id: ID!) {
+review(id: $id) {
+  rating, content
+}
+}
+
+
+*/
