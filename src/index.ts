@@ -18,6 +18,7 @@ async function startServer() {
 startServer();
 
 //--------Example client queries:
+//---Sandbox: https://studio.apollographql.com/sandbox/explorer -------
 /*
 
 query GamesQuery {
@@ -41,6 +42,41 @@ query GameQuery($id: ID!) {
 game(id: $id) {
   platform
 }
+}
+
+query ReviewQuery($id: ID!) {
+  review(id: $id) {
+    rating
+    game {
+      title, platform
+      reviews {
+         rating
+      }
+    }
+    }
+  }
+}
+
+mutation AddMutation($game: AddGameInput!) {
+  addGame(game: $game) {
+    id,
+    title,
+     platform
+  }
+}
+
+mutation UpdateMutation( $id: ID!, $edits: EditGameInput!) {
+  updateGame(id: $id, edits: $edits) {
+    id,
+    title,
+    platform
+  }
+}
+
+mutation DeleteMutation($id: ID!){
+  deleteGame(id: $id) {
+    id, title, platform
+  }
 }
 
 

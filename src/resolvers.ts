@@ -5,6 +5,13 @@ interface FindById {
   id: string;
 }
 
+interface AddGame {
+  title: string;
+  platform: string[];
+}
+
+interface EditGame extends Partial<AddGame> {}
+
 export const resolvers = {
   Query: {
     games() {
@@ -54,6 +61,33 @@ export const resolvers = {
     },
     game(parent: Review) {
       return db.games.find((a) => a.id === parent.game_id);
+    },
+  },
+  Mutation: {
+    addGame(parent: undefined, args: { game: AddGame }) {
+      let game = { ...args.game, id: crypto.randomUUID() };
+      db.games.push(game);
+
+      return game;
+    },
+    updateGame(parent: undefined, args: { id: String; edits: EditGame }) {
+      const { id, edits } = args;
+      db.games = db.games.map((game) => {
+        if (game.id === id) {
+          return {
+            ...game,
+            ...edits,
+          };
+        }
+        return game;
+      });
+
+      return db.games.find((a) => a.id === id);
+    },
+    deleteGame(parent: undefined, args: FindById) {
+      db.games = db.games.filter((a) => a.id !== args.id);
+
+      return db.games;
     },
   },
 };
