@@ -4,9 +4,16 @@
     "outDir": "dist",
     "lib": ["es2020"],
     "target": "es2020",
-    "module": "esnext",
+    "module": "commonjs" /* Specify what module code is generated. */,
     "moduleResolution": "node",
     "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "allowSyntheticDefaultImports": true,
+    "resolveJsonModule": true,
     "types": ["node"]
-  }
+  },
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }

@@ -6,14 +6,16 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "module",
   "scripts": {
     "compile": "tsc",
-    "start": "npm run compile && node ./dist/index.js"
+    "start": "npm run compile && node ./dist/index.js",
+    "devts": "ts-node-dev --respawn --transpile-only --loader ts-node/esm src/index.ts"
   },
   "dependencies": {
     "@apollo/server": "^4.10.4",
-    "graphql": "^16.9.0"
+    "graphql": "^16.9.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0"
   },
   "devDependencies": {
     "@types/node": "^20.14.9",
